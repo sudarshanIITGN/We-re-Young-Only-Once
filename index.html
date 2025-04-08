@@ -113,7 +113,7 @@
     </div>
     <div id="scene-text"></div>
     <div id="choices-container"></div>
-    <div id="game-over">Time’s up. You watched. You waited. Life didn’t.<br><br><em>The game ends here. Do not play again. Don't let moments go like this in real life.</em></div>
+    <div id="game-over">Time’s up. You watched. You waited. Life didn’t.<br><br><em>The game ends here. Do not replay the game. The game isn't designed for it. Don't let moments go like this in real life.</em></div>
   </div>
 
   <script>
@@ -129,12 +129,20 @@
       {
         text: "She says she'll apply for Phd abroad. You knew that ofcourse. She exhales a smoke that dissipiates in the air. She asks what are your plans?",
         choices: ["I'm not sure", "I'll take some time off from academia", "I wish I had told you this earlier"]
+      },
+      {
+        text: "She nods. You nod too. She says It was nice knowing you. In another world things would have been different. You say:",
+        choices: ["Things still can be", "I know right", "I wish I could come with you"]
+      },
+      {
+        text: "She exhales and flicks away the ciggerate bud. The sun has set. The horizon is bright red. The breeze has turned cooler. She gets up and walks away. You:",
+        choices: ["Sit there", "Call her back", "Go after her"]
       }
     ];
 
     let currentScene = 0;
-    let timeLeft = 17; // in seconds
-    let totalTime = 17;
+    let timeLeft = 18; // in seconds
+    let totalTime = 18;
     let timerInterval;
 
     const timerBar = document.getElementById("timer-bar");
