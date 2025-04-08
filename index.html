@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>You're Young Only Once</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #121212;
+      color: #f3f3f3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    #start-screen {
+      text-align: center;
+      max-width: 700px;
+    }
+
+    #start-screen h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    #start-screen p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #cccccc;
+    }
+
+    #start-button {
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      background-color: #1e1e1e;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #start-button:hover {
+      background-color: #444;
+    }
+
+    #timer {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 200px;
+    }
+
+    #timer-bar {
+      height: 20px;
+      background-color: #f08080;
+      border-radius: 10px;
+      transition: width 1s linear;
+    }
+
+    #scene-text {
+      max-width: 800px;
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .choice {
+      background-color: #1e1e1e;
+      border: 1px solid #444;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .choice:hover {
+      background-color: #444;
+    }
+
+    #game-over {
+      font-size: 2rem;
+      color: #f08080;
+      text-align: center;
+      display: none;
+    }
+
+    #game-content {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="start-screen">
+    <h1>We're Young Only Once</h1>
+    <p>This is a game about choices.<br>
+       Life moves pretty fast and similarly a timer would count down at the left upper corner.<br><br>
+       Have the strength to chose life.</p>
+    <button id="start-button">Start Game</button>
+  </div>
+
+  <div id="game-content">
+    <div id="timer">
+      <div id="timer-bar"></div>
+    </div>
+    <div id="scene-text"></div>
+    <div id="choices-container"></div>
+    <div id="game-over">Time’s up. You watched. You waited. Life didn’t.<br><br><em>The game ends here. Do not play again. Don't let moments go like this in real life.</em></div>
+  </div>
+
+  <script>
+    const scenes = [
+      {
+        text: "You climbed the terrace. The sun is setting and the last warm wind of the day is blowing. You give her a hand as she climbs the ladder. You sit down and she offers you a ciggerate. This is the last you two are meeting",
+        choices: ["Tell her your feelings", "Comment on the setting sun", "Ask her about her their plans after this", "Light the ciggerate and smile"]
+      },
+      {
+        text: "She smiles back but does not say anything. A bird flies overhead. Some kids are playing football at some distance.",
+        choices: ["Smile back and remain silent", "Hug her", "Take a photo of the sunset"]
+      },
+      {
+        text: "She says she'll apply for Phd abroad. You knew that ofcourse. She exhales a smoke that dissipiates in the air. She asks what are your plans?",
+        choices: ["I'm not sure", "I'll take some time off from academia", "I wish I had told you this earlier"]
+      }
+    ];
+
+    let currentScene = 0;
+    let timeLeft = 15; // in seconds
+    let totalTime = 15;
+    let timerInterval;
+
+    const timerBar = document.getElementById("timer-bar");
+    const sceneTextEl = document.getElementById("scene-text");
+    const choicesContainer = document.getElementById("choices-container");
+    const gameOverEl = document.getElementById("game-over");
+    const startScreen = document.getElementById("start-screen");
+    const gameContent = document.getElementById("game-content");
+    const startButton = document.getElementById("start-button");
+
+    startButton.onclick = () => {
+      startScreen.style.display = "none";
+      gameContent.style.display = "flex";
+      startGame();
+    };
+
+    function startGame() {
+      renderScene();
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerBar();
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          endGame();
+        }
+      }, 1000);
+    }
+
+    function updateTimerBar() {
+      const percent = (timeLeft / totalTime) * 100;
+      timerBar.style.width = percent + "%";
+    }
+
+    function renderScene() {
+      if (currentScene >= scenes.length) {
+        endGame();
+        return;
+      }
+
+      const scene = scenes[currentScene];
+      sceneTextEl.textContent = scene.text;
+      choicesContainer.innerHTML = '';
+
+      scene.choices.forEach(choice => {
+        const btn = document.createElement('div');
+        btn.className = 'choice';
+        btn.textContent = choice;
+        btn.onclick = () => {
+          currentScene++;
+          renderScene();
+        };
+        choicesContainer.appendChild(btn);
+      });
+    }
+
+    function endGame() {
+      sceneTextEl.style.display = 'none';
+      choicesContainer.style.display = 'none';
+      gameOverEl.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
