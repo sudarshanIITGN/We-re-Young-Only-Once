@@ -105,7 +105,7 @@
       Life moves pretty fast, blink and you'll miss it. The game presents two characters meeting
       for the last time. You have to decide what to do before time runs out. A timer will be on
       the top left corner. So much of life is spent in indecision. Let this not be one. <be><br>
-       Have the strength to chose life.</p>
+       Have the strength to choose life.</p>
     <button id="start-button">Start Game</button>
   </div>
 
@@ -121,30 +121,30 @@
   <script>
     const scenes = [
       {
-        text: "You climbed the terrace. The sun is setting and the last warm wind of the day is blowing. You give her a hand as she climbs the ladder. You sit down and she offers you a ciggerate. This is the last you two are meeting",
-        choices: ["Tell her your feelings", "Comment on the setting sun", "Ask her about her their plans after this", "Light the ciggerate and smile"]
+        text: "You climbed the terrace. The sun is setting, and the last warm wind of the day is blowing. You give her a hand as she climbs the ladder. You sit down and she offers you a ciggerate. This is the last you two are meeting",
+        choices: ["Tell her your feelings", "Comment on the setting sun", "Ask her about her plans after this", "Light the cigarette and smile"]
       },
       {
         text: "She smiles back but does not say anything. A bird flies overhead. Some kids are playing football at some distance.",
         choices: ["Smile back and remain silent", "Hug her", "Take a photo of the sunset"]
       },
       {
-        text: "She says she'll apply for Phd abroad. You knew that ofcourse. She exhales a smoke that dissipiates in the air. She asks what are your plans?",
+        text: "She says she'll apply for a Phd abroad. You knew that, of course. She exhales a smoke that dissipates in the air. She asks What are your plans?",
         choices: ["I'm not sure", "I'll take some time off from academia", "I wish I had told you this earlier"]
       },
       {
-        text: "She nods. You nod too. She says It was nice knowing you. In another world things would have been different. You say:",
+        text: "She nods. You nod too. She says It was nice knowing you. In another world, things would have been different. You say:",
         choices: ["Things still can be", "I know right", "I wish I could come with you"]
       },
       {
-        text: "She exhales and flicks away the ciggerate bud. The sun has set. The horizon is bright red. The breeze has turned cooler. She gets up and walks away. You:",
+        text: "She exhales and flicks away the cigarette bud. The sun has set. The horizon is bright red. The breeze has turned cooler. She gets up and walks away. You:",
         choices: ["Sit there", "Call her back", "Go after her"]
       }
     ];
 
     let currentScene = 0;
-    let timeLeft = 18; // in seconds
-    let totalTime = 18;
+    let timeLeft = 20; // in seconds
+    let totalTime = 20;
     let timerInterval;
 
     const timerBar = document.getElementById("timer-bar");
@@ -209,3 +209,4 @@
   </script>
 </body>
 </html>
+
